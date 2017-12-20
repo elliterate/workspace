@@ -3,14 +3,8 @@ recipes:
 # base
 - base
 - base::bash_it
-- homebrew
-- homebrew::install_formulas
-- homebrew::install_casks
 
 # settings
-- osx-settings
-- osx-settings::dock_preferences
-- powerline::fonts
 - terminal
 
 # development (general)
@@ -19,7 +13,6 @@ recipes:
 - git
 - git::default_editor
 - vim
-- osx-apps::iterm2
 
 # development (web)
 - postgresql
@@ -34,73 +27,4 @@ recipes:
 
 node_attributes:
   workstation:
-    settings:
-      clock_format: EEE MMM d  h:mm a
-    dock_preferences:
-      orientation: 'bottom'
-      auto_hide: true
-      tile_size: 65
-      magnification: false
-    screensaver:
-      ask_for_password: true
-      ask_for_password_delay: 0
-      displaysleep: 10
-      disksleep: 10
-      sleep: 10
-      name: 'Flurry'
-    terminal:
-      default_profile: 'Pro'
-    text:
-      automatically_correct_spelling: false
-    trackpad:
-      tap_behavior: 'click'
     workspace_directory: 'src'
-  homebrew:
-    formulas:
-      - ack
-      - ag
-      - hg
-      - libdvdcss
-      - pstree
-      - tree
-      - watch
-      - wget
-      - yarn
-    casks:
-      - adobe-air
-      - airfoil
-      - colloquy
-      - drobo-dashboard
-      - dropbox
-      - flux
-      - github-desktop
-      - google-chrome
-      - google-drive
-      - google-play-music-desktop-player
-      - google-hangouts
-      - handbrake
-      - istat-menus
-      - java
-      - jetbrains-toolbox
-      - little-snitch
-      - macvim
-      - micro-snitch
-      - mysql
-      - logitech-myharmony
-      - qt@5.5
-      - razer-synapse
-      - screenhero
-      - sizeup
-      - skype
-      - soulver
-      - soundsource
-      - steam
-      - subler
-      - sublime-text
-      - superduper
-      - textmate
-      - transmission
-      - transmit
-      - vagrant
-      - virtualbox
-      - vmware-fusion
