@@ -4,9 +4,6 @@ recipes:
 - base
 - base::bash_it
 
-# settings
-- terminal
-
 # development (general)
 - base::bin_directory
 - base::workspace_directory
