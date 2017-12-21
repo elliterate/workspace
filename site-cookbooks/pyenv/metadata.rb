@@ -1,4 +1,3 @@
 name     'pyenv'
-supports 'mac_os_x'
+supports 'ubuntu'
 depends  'base'
-depends  'homebrew'
