@@ -1,7 +1,7 @@
 site 'https://supermarket.getchef.com/api/v1'
 
 cookbook 'base', path: 'site-cookbooks/base'
-cookbook 'git'
+cookbook 'git', path: 'site-cookbooks/git'
 cookbook 'postgresql'
 cookbook 'pyenv', path: 'site-cookbooks/pyenv'
 cookbook 'python', path: 'site-cookbooks/python'
