@@ -23,6 +23,7 @@ end
 
 directory node['ruby-build']['dir'] do
   owner node['workstation']['user']
+  recursive true
   mode '0777'
 end
 
