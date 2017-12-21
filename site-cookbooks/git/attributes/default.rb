@@ -1,7 +1,7 @@
 node.default['workstation']['git']['editor'] = 'vim'
 
 node.default['workstation']['git']['global_config'] = {
-  'core.pager' => '"less -FXRS -x2"',
+  'core.pager' => 'less -FXRS -x2',
   'core.excludesfile' => "#{node['workstation']['home']}/.gitignore",
   'color.branch' => 'auto',
   'color.diff' => 'auto',
