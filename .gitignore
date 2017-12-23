@@ -1,4 +1,5 @@
 .bundle/
+.chef/
 cookbooks/
 tmp/
 vendor/bundle
