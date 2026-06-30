@@ -1,1 +1,7 @@
 # Workstation
+
+## Usage
+
+```sh
+./install
+```
