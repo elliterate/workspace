@@ -43,3 +43,7 @@
         dest: "{{ lookup('env', 'HOME') }}/src/github.com/{{ item }}"
       loop: "{{ repos }}"
       notify: Install repositories
+
+    - name: Set macOS preferences
+      script: set_macos_preferences.sh
+      when: ansible_facts['os_family'] == "Darwin"
