@@ -13,6 +13,15 @@
       loop: "{{ repos }}"
 
   tasks:
+    - name: Enable Touch ID PAM module
+      become: true
+      lineinfile:
+        path: /etc/pam.d/sudo
+        line: "auth       sufficient     pam_tid.so"
+        insertbefore: "required"
+        firstmatch: true
+      when: ansible_facts['os_family'] == "Darwin"
+
     - name: Install Homebrew bundle
       when: ansible_facts['os_family'] == "Darwin"
       block:

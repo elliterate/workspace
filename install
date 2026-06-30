@@ -28,4 +28,4 @@ if ! command -v ansible-playbook >/dev/null 2>&1; then
   pip install ansible
 fi
 
-PYTHONUNBUFFERED=1 ansible-playbook -c local -i localhost, playbooks/workstation.yml
+PYTHONUNBUFFERED=1 ansible-playbook -c local -i localhost, --ask-become-pass playbooks/workstation.yml
