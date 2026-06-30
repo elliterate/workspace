@@ -2,6 +2,16 @@
   hosts:
     - localhost
 
+  vars:
+    repos:
+      - elliterate/dotfiles
+      - elliterate/vim-config
+
+  handlers:
+    - name: Install repositories
+      command: "{{ lookup('env', 'HOME') }}/src/github.com/{{ item }}/install.sh"
+      loop: "{{ repos }}"
+
   tasks:
     - name: Install Homebrew bundle
       when: ansible_facts['os_family'] == "Darwin"
@@ -26,3 +36,10 @@
         - name: Install Homebrew bundle
           command: brew bundle --global
           when: brewfile.changed
+
+    - name: Checkout repositories
+      git:
+        repo: "https://github.com/{{ item }}.git"
+        dest: "{{ lookup('env', 'HOME') }}/src/github.com/{{ item }}"
+      loop: "{{ repos }}"
+      notify: Install repositories
