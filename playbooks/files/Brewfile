@@ -26,6 +26,7 @@ brew 'tfenv'
 brew 'tree'
 brew 'watch'
 brew 'wget'
+brew 'yq'
 
 brew 'hashicorp/tap/packer'
 brew 'weaveworks/tap/eksctl'
