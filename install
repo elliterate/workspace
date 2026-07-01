@@ -24,8 +24,6 @@ else
   source "$VENV_DIR/bin/activate"
 fi
 
-if ! command -v ansible-playbook >/dev/null 2>&1; then
-  pip install ansible
-fi
+pip install -r requirements.txt
 
 PYTHONUNBUFFERED=1 ansible-playbook -c local -i localhost, --ask-become-pass playbooks/workstation.yml
