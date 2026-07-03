@@ -1,8 +1,5 @@
 #!/bin/bash -e
 
-XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
-CACHE_DIR="$XDG_CACHE_HOME/workstation"
-
 if command -v python3 >/dev/null 2>&1; then
   PYTHON=python3
 elif command -v python >/dev/null 2>&1; then
@@ -12,9 +9,7 @@ else
   exit 1
 fi
 
-mkdir -p "$CACHE_DIR"
-
-VENV_DIR="$CACHE_DIR/venv"
+VENV_DIR=".venv"
 
 if [ ! -d "$VENV_DIR" ]; then
   $PYTHON -m venv "$VENV_DIR"
