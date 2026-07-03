@@ -2,16 +2,6 @@
   hosts:
     - localhost
 
-  vars:
-    repos:
-      - elliterate/dotfiles
-      - elliterate/vim-config
-
-  handlers:
-    - name: Install repositories
-      command: "{{ lookup('env', 'HOME') }}/src/github.com/{{ item }}/install.sh"
-      loop: "{{ repos }}"
-
   tasks:
     - name: Enable Touch ID PAM module
       become: true
@@ -46,16 +36,12 @@
           command: brew bundle --global
           when: brewfile.changed
 
-    - name: Checkout repositories
-      git:
-        repo: "https://github.com/{{ item }}.git"
-        dest: "{{ lookup('env', 'HOME') }}/src/github.com/{{ item }}"
-      loop: "{{ repos }}"
-      notify: Install repositories
-
     - name: Set macOS preferences
       script: set_macos_preferences.sh
       when: ansible_facts['os_family'] == "Darwin"
+
+- name: Install repositories
+  import_playbook: install-repositories.yml
 
 - name: Configure SSH
   import_playbook: ssh-config.yml
