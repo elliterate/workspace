@@ -1,0 +1,35 @@
+- name: Enable Touch ID PAM module
+  become: true
+  lineinfile:
+    path: /etc/pam.d/sudo
+    line: "auth       sufficient     pam_tid.so"
+    insertbefore: "required"
+    firstmatch: true
+  when: ansible_facts['os_family'] == "Darwin"
+
+- name: Install Homebrew bundle
+  when: ansible_facts['os_family'] == "Darwin"
+  block:
+    - name: Install Homebrew
+      shell: |
+        curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash -
+      args:
+        creates: /opt/homebrew/bin/brew
+
+    - name: Create Homebrew config directory
+      file:
+        path: "{{ lookup('env', 'HOME') }}/.homebrew"
+        state: directory
+
+    - name: Copy Homebrew bundle config
+      copy:
+        src: Brewfile
+        dest: "{{ lookup('env', 'HOME') }}/.homebrew/Brewfile"
+      register: brewfile
+
+    - name: Install Homebrew bundle
+      command: brew bundle --global
+      when: brewfile.changed
+
+- name: Set macOS preferences
+  script: set_macos_preferences.sh
