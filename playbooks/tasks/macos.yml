@@ -33,3 +33,7 @@
 
 - name: Set macOS preferences
   script: set_macos_preferences.sh
+
+- name: Enable locate launch daemon
+  become: true
+  command: launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
