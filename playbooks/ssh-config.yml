@@ -1,0 +1,26 @@
+- name: Configure SSH
+  hosts:
+    - localhost
+
+  tasks:
+    - name: Create SSH directory
+      file:
+        path: "{{ lookup('env', 'HOME') }}/.ssh"
+        state: directory
+        mode: "0700"
+
+    - name: Create SSH config file
+      file:
+        path: "{{ lookup('env', 'HOME') }}/.ssh/config"
+        mode: "0600"
+
+    - name: Create SSH config dropin directory
+      file:
+        path: "{{ lookup('env', 'HOME') }}/.ssh/config.d"
+        state: directory
+        mode: "0700"
+
+    - name: Use dropin directory in SSH config
+      lineinfile:
+        path: "{{ lookup('env', 'HOME') }}/.ssh/config"
+        line: "Include config.d/*"
