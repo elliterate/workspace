@@ -32,7 +32,7 @@
       when: brewfile.changed
 
 - name: Set macOS preferences
-  script: set_macos_preferences.sh
+  include_tasks: tasks/macos-defaults.yml
 
 - name: Enable locate launch daemon
   become: true
