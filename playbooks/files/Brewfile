@@ -1,6 +1,3 @@
-tap 'hashicorp/tap', trusted: true
-tap 'weaveworks/tap', trusted: true
-
 brew 'ack'
 brew 'ansible'
 brew 'asdf'
@@ -28,9 +25,6 @@ brew 'tree'
 brew 'watch'
 brew 'wget'
 brew 'yq'
-
-brew 'hashicorp/tap/packer'
-brew 'weaveworks/tap/eksctl'
 
 cask '1password-cli'
 cask 'brave-browser'
