@@ -7,29 +7,25 @@
     firstmatch: true
   when: ansible_facts['os_family'] == "Darwin"
 
-- name: Install Homebrew bundle
-  when: ansible_facts['os_family'] == "Darwin"
-  block:
-    - name: Install Homebrew
-      shell: |
-        curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash -
-      args:
-        creates: /opt/homebrew/bin/brew
+- name: Install Homebrew
+  shell: |
+    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash -
+  args:
+    creates: /opt/homebrew/bin/brew
 
-    - name: Create Homebrew config directory
-      file:
-        path: "{{ lookup('env', 'HOME') }}/.homebrew"
-        state: directory
+- name: Update Homebrew
+  command: /opt/homebrew/bin/brew update
 
-    - name: Copy Homebrew bundle config
-      copy:
-        src: Brewfile
-        dest: "{{ lookup('env', 'HOME') }}/.homebrew/Brewfile"
-      register: brewfile
+- name: Install Homebrew formulae
+  community.general.homebrew:
+    name: "{{ item }}"
+    force_formula: true
+  loop: "{{ formulae }}"
 
-    - name: Install Homebrew bundle
-      command: brew bundle --global
-      when: brewfile.changed
+- name: Install Homebrew cask
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+  loop: "{{ casks }}"
 
 - name: Set macOS preferences
   include_tasks: tasks/macos-defaults.yml

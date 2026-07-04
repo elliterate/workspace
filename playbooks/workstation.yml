@@ -4,6 +4,58 @@
 
   tasks:
     - include_tasks: tasks/macos.yml
+      vars:
+        formulae:
+          - ack
+          - ansible
+          - asdf
+          - awk
+          - aws-vault
+          - awscli
+          - btop
+          - curl
+          - gh
+          - git
+          - git-delta
+          - gnu-sed
+          - gpg
+          - htop
+          - jq
+          - minikube
+          - nodenv
+          - pstree
+          - pyenv
+          - qrencode
+          - rbenv
+          - ruby-build
+          - tfenv
+          - tree
+          - watch
+          - wget
+          - yq
+        casks:
+          - 1password-cli
+          - brave-browser
+          - chromium
+          - docker-desktop
+          - elgato-control-center
+          - elgato-stream-deck
+          - firefox
+          - github
+          - google-chrome
+          - google-cloud-sdk
+          - hazeover
+          - iterm2
+          - jetbrains-toolbox
+          - lolgato
+          - macvim
+          - ngrok
+          - obsidian
+          - scroll-reverser
+          - tidal
+          - vagrant
+          - virtualbox
+          - visual-studio-code
       when: ansible_facts['os_family'] == "Darwin"
 
 - name: Install repositories
